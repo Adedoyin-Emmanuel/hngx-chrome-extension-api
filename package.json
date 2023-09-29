@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "check-lint": "eslint [0-9]*.ts",
-    "build": "tsc index.ts --outDir dist",
+    "build": "rimraf ./build && tsc index.ts --esModuleInterop true --outDir dist",
     "start": "npm run build && node ./dist/index.js",
     "dev": "nodemon index.ts",
     "test": "jest",
