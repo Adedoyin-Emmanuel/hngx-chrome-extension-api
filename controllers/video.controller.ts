@@ -53,15 +53,35 @@ class VideoController {
   }
 
   static async getAllVideos(req: Request, res: Response) {
-    return response(res, 200, "Getting all videos");
+    const dataFromDb = await VideoModel.find();
+
+    return response(res, 200, "Videos fetched successfully", dataFromDb);
   }
 
   static async getVideoById(req: Request, res: Response) {
-    return response(res, 200, "Getting one video");
+    const requestSchema = Joi.object({
+      id: Joi.string().required(),
+    });
+
+    const { error, value } = requestSchema.validate(req.params);
+    if (error) return response(res, 400, error.details[0].message);
+
+    const dataFromDb = await VideoModel.findById(value);
+
+    return response(res, 200, "Video fetched successfully", dataFromDb);
   }
 
   static async deleteVideo(req: Request, res: Response) {
-    return response(res, 200, "Deleted video successfully");
+    const requestSchema = Joi.object({
+      id: Joi.string().required(),
+    });
+
+    const { error, value } = requestSchema.validate(req.params);
+    if (error) return response(res, 400, error.details[0].message);
+
+    const dataFromDb = await VideoModel.findByIdAndDelete(value);
+
+    return response(res, 200, "Video deleted successfully", dataFromDb);
   }
 }
 
