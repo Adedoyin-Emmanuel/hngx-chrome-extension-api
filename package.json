@@ -4,9 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "check-lint": "eslint [0-9]*.js",
+    "start": "node --experimental-modules index.js",
+    "dev": "nodemon index.js",
+    "test": "jest",
+    "full-test": "eslint */[0-9]*.js && jest --watchAll --verbose",
+    "full-test-fix": "eslint */[0-9]*.js --fix && jest --watchAll --verbose"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Adedoyin Emmanuel Adeniyi",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.8.0",
+    "@babel/preset-env": "^7.6.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.17.0"
+  }
 }
