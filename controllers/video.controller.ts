@@ -36,7 +36,7 @@ class VideoController {
       if (error) return response(res, 400, error.details[0].message);
       if (err) {
         console.log(err);
-        return response(res, 400, "File upload failed");
+        return response(res, 400, `File upload failed, ${err.message}`);
       }
 
       if (!req.file) return response(res, 400, "File is required");
