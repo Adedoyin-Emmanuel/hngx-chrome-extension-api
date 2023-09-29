@@ -1,22 +1,23 @@
-import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import "express-async-errors";
+import morgan from "morgan";
 import { errorHandeler, notFound, rateLimiter } from "./middlewares/";
+import videoRouter from "./routes";
 import { connectToDb } from "./utils";
 const PORT = process.env.PORT || 2800;
 
 const app = express();
 dotenv.config();
 
-app.use(cors());
+//middlewares
 app.use(express.json());
+app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(rateLimiter);
 app.use(notFound);
 
-app.use("/api/test", (req: express.Request, res: express.Response) => {
-  res.status(200).json({ message: "Hello World 🚀" });
-});
+app.use("/api/", videoRouter);
 
 app.use(errorHandeler);
 
