@@ -1,5 +1,5 @@
 import { Response } from "express";
-const response = (res: Response, code: number, message: string, data: any) => {
+const response = (res: Response, code: number, message: string, data?: any) => {
   if (!res) throw new Error("Response not defined");
 
   const httpStatusText = {
