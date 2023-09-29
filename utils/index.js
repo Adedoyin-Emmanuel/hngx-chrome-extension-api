@@ -1,7 +1,7 @@
-const connectToDb = require("./connectDb");
-const response = require("./response");
+import connectToDb from "./connectToDb";
+import response from "./response";
 
-module.exports = {
+export {
   connectToDb,
   response,
 };
