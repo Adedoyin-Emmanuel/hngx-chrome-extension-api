@@ -13,6 +13,10 @@ class VideoController {
   static async getVideoById(req: Request, res: Response) {
     return response(res, 200, "Getting one video");
   }
+
+  static async deleteVideo(req: Request, res: Response) {
+    return response(res, 200, "Deleted video successfully");
+  }
 }
 
 export default VideoController;
