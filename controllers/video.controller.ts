@@ -66,7 +66,8 @@ class VideoController {
     const { error, value } = requestSchema.validate(req.params);
     if (error) return response(res, 400, error.details[0].message);
 
-    const dataFromDb = await VideoModel.findById(value);
+    const dataFromDb = await VideoModel.findById(value.id);
+    if (!dataFromDb) return response(res, 404, "Video not found");
 
     return response(res, 200, "Video fetched successfully", dataFromDb);
   }
@@ -79,7 +80,8 @@ class VideoController {
     const { error, value } = requestSchema.validate(req.params);
     if (error) return response(res, 400, error.details[0].message);
 
-    const dataFromDb = await VideoModel.findByIdAndDelete(value);
+    const dataFromDb = await VideoModel.findByIdAndDelete(value.id);
+    if (!dataFromDb) return response(res, 404, "Video not found");
 
     return response(res, 200, "Video deleted successfully", dataFromDb);
   }
