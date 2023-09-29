@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const VideoSchema = new mongoose.Schema(
   {
+    
     title: {
       type: String,
       required: true,
@@ -12,6 +13,11 @@ const VideoSchema = new mongoose.Schema(
       type: String,
       required: false,
       max: 5000,
+    },
+
+    url: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true, versionKey: false }
