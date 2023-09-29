@@ -11,9 +11,9 @@ const app = express();
 dotenv.config();
 
 //middlewares
-app.use(express.json());
+// app.use(express.json());
 app.use(morgan("dev"));
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 app.use(rateLimiter);
 
 app.use("/api/video", videoRouter);

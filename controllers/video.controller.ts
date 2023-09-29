@@ -1,35 +1,25 @@
 import { Request, Response } from "express";
-import fs from "fs";
 import Joi from "joi";
 import { response } from "../utils";
-
 
 class VideoController {
   static async uploadVideo(req: Request, res: Response) {
     const requestSchema = Joi.object({
       title: Joi.string().required().max(100),
       transcript: Joi.string().required().max(5000),
+      video: Joi.any()
+        .required()
+        .custom((value, helpers) => {
+          if (!value) return helpers.error("any.required");
+          if (value.size > 50 * 1024 * 1024) {
+            return helpers.error("any.invalid", {
+              invalids: [value],
+              message: "File size must be less than 50MB",
+            });
+          }
+          return value;
+        }, "File validation"),
     });
-
-    if (!req.file) return response(res, 400, "File is required");
-
-   // const stream = fs.createReadStream(req.file.buffer);
-
-    // const fileInfo = await fileTypeFromStream(stream);
-
-    // if (!fileInfo || fileInfo.mime.split("/")[0] !== "video") {
-    //   return response(
-    //     res,
-    //     400,
-    //     "Invalid file type. Please upload a video file."
-    //   );
-    // }
-
-    const { error, value } = requestSchema.validate(req.body);
-
-    if (error) return response(res, 400, error.details[0].message);
-
-    return response(res, 200, req.file.filename);
   }
 
   static async getAllVideos(req: Request, res: Response) {
