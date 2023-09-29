@@ -5,7 +5,7 @@ const VideoSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      max: 50,
+      max: 100,
     },
 
     transcript: {
