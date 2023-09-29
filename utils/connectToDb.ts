@@ -1,7 +1,7 @@
 import config from "config";
 import mongoose from "mongoose";
 
-export default connectToDb = async () => {
+const connectToDb = async () => {
   const dbUrl = config.get("App.database-url");
   try {
     await mongoose.connect(dbUrl);
@@ -11,3 +11,4 @@ export default connectToDb = async () => {
   }
 };
 
+export default connectToDb;
