@@ -1,6 +1,7 @@
 import response from "../utils/response";
+import { Response, Request } from "express";
 
-const notFound = (req, res) => {
+const notFound = (req:Request, res: Response) => {
   return response(res, 404, "Route not found");
 };
 
