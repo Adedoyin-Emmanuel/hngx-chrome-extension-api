@@ -2,20 +2,25 @@ import mongoose from "mongoose";
 
 const VideoSchema = new mongoose.Schema(
   {
-    title: {
+    videoId: {
       type: String,
       required: true,
+      unique: true,
+    },
+    title: {
+      type: String,
+      required: false,
       max: 100,
     },
 
     transcript: {
       type: String,
-      required: true,
+      required: false,
     },
 
     url: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   { timestamps: true, versionKey: false }

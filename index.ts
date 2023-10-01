@@ -14,7 +14,7 @@ const app = express();
 dotenv.config();
 
 //middlewares
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }));
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(rateLimiter);
