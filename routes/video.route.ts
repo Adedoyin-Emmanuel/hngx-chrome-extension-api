@@ -14,7 +14,7 @@ videoRouter.post(
   VideoController.startStream
 );
 //end stream
-videoRouter.post("/stream/end/:videoId", VideoController.EndStream);
+videoRouter.post("/stream/end/", VideoController.EndStream);
 videoRouter.get("/", VideoController.getAllVideos);
 videoRouter.get("/:id", VideoController.getVideoById);
 videoRouter.delete("/:id", VideoController.deleteVideo);
