@@ -1,8 +1,7 @@
-import config from "config";
 import mongoose from "mongoose";
 
 const connectToDb = async () => {
-  const dbUrl: string = config.get("App.database-url");
+  const dbUrl: any = process.env.MONGODB_URL;
   try {
     await mongoose.connect(dbUrl);
     console.log(`Connected to MongoDb successfully at ${dbUrl}`);
