@@ -88,7 +88,7 @@ class VideoController {
       typeof videoBlobId === "undefined"
     ) {
       console.log("stream is missing");
-      return response(res, 200, "Stream is missing");
+      return response(res, 400, "Stream is missing");
     }
 
     //check if the video exists
