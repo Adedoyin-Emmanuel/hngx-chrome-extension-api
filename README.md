@@ -4,7 +4,7 @@ This is the **API** for the **HNGX Frontend Chrome Extension Task**
 
 ## Documentation 📖\*
 
-This is a brief documentation of the **HNGX Frontend Chrome Extension Task API** for more concise documentation please see the [Documentation]()
+This is a brief documentation of the **HNGX Frontend Chrome Extension Task API** for more concise documentation please see the [Documentation](./DOCUMENTATION.md)
 
 #### Base Structure
 
