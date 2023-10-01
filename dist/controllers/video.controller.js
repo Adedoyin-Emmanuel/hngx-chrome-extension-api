@@ -79,10 +79,10 @@ class VideoController {
     //   });
     // }
     static startStream(req, res) {
-        var _a;
+        var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
-            const videoBlob = undefined;
-            const videoBlobId = (_a = req === null || req === void 0 ? void 0 : req.body) === null || _a === void 0 ? void 0 : _a.videoId;
+            const videoBlob = (_a = req === null || req === void 0 ? void 0 : req.files["blob"][0]) === null || _a === void 0 ? void 0 : _a.buffer;
+            const videoBlobId = (_b = req === null || req === void 0 ? void 0 : req.body) === null || _b === void 0 ? void 0 : _b.videoId;
             if (typeof videoBlob === "undefined" ||
                 typeof videoBlobId === "undefined") {
                 console.log("stream is missing");
