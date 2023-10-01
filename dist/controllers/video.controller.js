@@ -86,7 +86,7 @@ class VideoController {
             if (typeof videoBlob === "undefined" ||
                 typeof videoBlobId === "undefined") {
                 console.log("stream is missing");
-                return (0, utils_1.response)(res, 200, "Stream is missing");
+                return (0, utils_1.response)(res, 400, "Stream is missing");
             }
             //check if the video exists
             const checkVideo = yield models_1.default.findOne({ videoId: videoBlobId });
