@@ -1,5 +1,6 @@
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import "express-async-errors";
 import morgan from "morgan";
@@ -11,7 +12,6 @@ import { connectToDb } from "./utils";
 const PORT = process.env.PORT || 2800;
 
 const app = express();
-dotenv.config();
 
 //middlewares
 app.use(bodyParser.json({ limit: "50mb" }));

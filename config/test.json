@@ -1,7 +1,6 @@
 {
   "App": {
     "request-limit": 100,
-    "database-url": " mongodb://localhost/hngx-chrome-api",
     "max-file-size": 52428800
   }
 }

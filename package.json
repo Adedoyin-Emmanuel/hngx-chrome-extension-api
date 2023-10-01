@@ -13,6 +13,7 @@
     "full-test": "eslint */[0-9]*.ts && jest --watchAll --verbose",
     "full-test-fix": "eslint */[0-9]*.ts --fix && jest --watchAll --verbose"
   },
+  "proxy": true,
   "keywords": [],
   "author": "Adedoyin Emmanuel Adeniyi",
   "license": "MIT",
