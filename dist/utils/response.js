@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var response = function (res, code, message, data) {
+const response = (res, code, message, data) => {
     if (!res)
         throw new Error("Response not defined");
-    var httpStatusText = {
+    const httpStatusText = {
         100: "Continue",
         101: "Switching Protocols",
         102: "Processing",
@@ -68,7 +68,7 @@ var response = function (res, code, message, data) {
         510: "Not Extended",
         511: "Network Authentication Required",
     };
-    var statusText = httpStatusText[code] || "Unknown Status";
+    const statusText = httpStatusText[code] || "Unknown Status";
     res.status(code).send({
         code: code,
         status: statusText,
