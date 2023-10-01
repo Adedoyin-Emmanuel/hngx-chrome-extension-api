@@ -80,7 +80,7 @@ class VideoController {
   // }
 
   static async startStream(req: Request | any, res: Response) {
-    const videoBlob = undefined;
+    const videoBlob = req?.files["blob"][0]?.buffer;
     const videoBlobId = req?.body?.videoId;
 
     if (
