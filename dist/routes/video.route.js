@@ -12,7 +12,7 @@ const videoRouter = express_1.default.Router();
 //stream endpoint
 videoRouter.post("/stream", upload.fields([{ name: "blob" }, { name: "videoId" }]), controllers_1.default.startStream);
 //end stream
-videoRouter.post("/stream/end/", controllers_1.default.EndStream);
+videoRouter.get("/stream/end/:id", controllers_1.default.EndStream);
 videoRouter.get("/", controllers_1.default.getAllVideos);
 videoRouter.get("/:id", controllers_1.default.getVideoById);
 videoRouter.delete("/:id", controllers_1.default.deleteVideo);

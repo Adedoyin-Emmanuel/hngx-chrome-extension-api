@@ -53,20 +53,24 @@ class VideoController {
         return __awaiter(this, void 0, void 0, function* () {
             //const videoBlobId = req?.params?.videoId;
             const requestSchema = joi_1.default.object({
-                videoId: joi_1.default.string().required(),
-                title: joi_1.default.string().required(),
+                id: joi_1.default.string().required(),
             });
-            const { error, value } = requestSchema.validate(req.body);
+            const videoTitle = req.query.videoTitle || "Test video";
+            console.log(req.query);
+            const { error, value } = requestSchema.validate(req.params);
             if (error)
-                return (0, utils_1.response)(res, 400, "Video id not provided");
-            const dbVideo = yield models_1.default.findOne({ videoId: value.videoId });
+                console.log(error.details[0].message);
+            if (error)
+                return (0, utils_1.response)(res, 400, error.details[0].message);
+            const dbVideo = yield models_1.default.findOne({ videoId: value.id });
             if (!dbVideo)
                 return (0, utils_1.response)(res, 404, "video not found");
-            const fileName = `${value.videoId}.webm`;
+            const fileName = `${value.id}.webm`;
             const uploadDir = path_1.default.join(__dirname, "..", "/uploads");
             const videoFilePath = `${uploadDir}/${fileName}`;
             if (!fs_1.default.existsSync(videoFilePath)) {
-                return (0, utils_1.response)(res, 200, "Stream does not exist");
+                console.log("Stream doesn't exist");
+                return (0, utils_1.response)(res, 404, "Stream does not exist");
             }
             //other processing
             const readFile = fs_1.default.createReadStream(videoFilePath);
@@ -79,22 +83,24 @@ class VideoController {
             };
             try {
                 const aiTranscript = yield OpenAi.audio.transcriptions.create(transcriptionParams);
-                const { text: transcript } = aiTranscript;
-                const { title } = value;
+                const transcript = aiTranscript === null || aiTranscript === void 0 ? void 0 : aiTranscript.text;
+                const title = videoTitle;
+                console.log(transcript);
                 const dataToStore = {
                     title,
                     transcript,
-                    url: `${req.get("host")}/assets/${videoFilePath}/`,
+                    url: `/assets/${fileName}/`,
                 };
                 // update the data in the database
-                const dbResponse = yield models_1.default.findOneAndUpdate({ videoId: value.videoId }, dataToStore, { new: true });
+                const dbResponse = yield models_1.default.findOneAndUpdate({ videoId: value.id }, dataToStore, { new: true });
                 if (!dbResponse)
                     return (0, utils_1.response)(res, 404, "Video not found");
+                console.log(dbResponse);
                 return (0, utils_1.response)(res, 200, "Video stream successful", dbResponse);
             }
             catch (error) {
                 console.error("Error:", error);
-                return (0, utils_1.response)(res, 500, "Video stream failed");
+                return (0, utils_1.response)(res, 500, `Video stream failed ${error}`);
             }
         });
     }
