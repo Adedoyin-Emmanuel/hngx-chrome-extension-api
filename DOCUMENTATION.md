@@ -2,6 +2,12 @@
 
 The official documentaion
 
+## Live URL
+This is the live URL for the API it works fine now, I was able to successfully deploy it on render. Thank God 😊
+https://hngx-chrome-extension-api.onrender.com/api
+
+
+
 ### Base Structure
 
 For every request you make to my endpoint whether the request is successful or not, you would always get a structure like this

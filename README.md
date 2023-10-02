@@ -6,6 +6,12 @@ This is the **API** for the **HNGX Frontend Chrome Extension Task**
 
 This is a brief documentation of the **HNGX Frontend Chrome Extension Task API** for more concise documentation please see the [Documentation](./DOCUMENTATION.md)
 
+
+## Live URL
+This is the live URL for the API it works fine now, I was able to successfully deploy it on render. Thank God 😊
+https://hngx-chrome-extension-api.onrender.com/api
+
+
 ### Base Structure
 
 For every request you make to my endpoint whether the request is successful or not, you would always get a structure like this
