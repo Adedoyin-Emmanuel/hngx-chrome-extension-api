@@ -32,6 +32,7 @@ The stream endpoint takes another parameter which is `/upload` just for clarity.
 **Upload Endpoint URL**`https://localhost:2800/api/video/stream`
 
 The API endpoint expects a video blob and an id property in the **Request Body**
+It is best you use **FormData**
 
 ```json
 {
@@ -57,15 +58,13 @@ If the request succeeds, the API would return the following.
 
 The stream endpoint takes another parameter which is `/upload` just for clarity.
 
-**Upload Endpoint URL**`https://localhost:2800/api/video/stream/end`
+**Upload Endpoint URL**`https://localhost:2800/api/video/stream/end/:id?videoTitle=Webiste Hero Section Bug Fix`
 
+**Method** `GET`
 The API endpoint expects an id property and a videoTitle in the **Request Body**
 
 ```json
-{
-  "videoId": "video12345",
-  "title": "A nice video"
-}
+
 ```
 
 #### Success Response
