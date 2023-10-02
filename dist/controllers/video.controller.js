@@ -38,7 +38,8 @@ class VideoController {
                 });
             }
             const fileName = `${videoBlobId}.webm`;
-            const uploadDir = path_1.default.join(__dirname, "..", "/uploads");
+            //const uploadDir = path.join(__dirname, "..", "/uploads");
+            const uploadDir = path_1.default.join(process.cwd() + "/uploads");
             const videoFilePath = `${uploadDir}/${fileName}`;
             if (!fs_1.default.existsSync(videoFilePath)) {
                 fs_1.default.writeFileSync(videoFilePath, "");
@@ -64,9 +65,10 @@ class VideoController {
                 return (0, utils_1.response)(res, 400, error.details[0].message);
             const dbVideo = yield models_1.default.findOne({ videoId: value.id });
             if (!dbVideo)
-                return (0, utils_1.response)(res, 404, "video not found");
+                return (0, utils_1.response)(res, 404, "Video not found");
             const fileName = `${value.id}.webm`;
-            const uploadDir = path_1.default.join(__dirname, "..", "/uploads");
+            //const uploadDir = path.join(__dirname, "..", "/uploads");
+            const uploadDir = path_1.default.join(process.cwd() + "/uploads");
             const videoFilePath = `${uploadDir}/${fileName}`;
             if (!fs_1.default.existsSync(videoFilePath)) {
                 console.log("Stream doesn't exist");
