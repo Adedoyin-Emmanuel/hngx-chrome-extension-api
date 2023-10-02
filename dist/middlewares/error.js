@@ -6,6 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const response_1 = __importDefault(require("../utils/response"));
 const errorHandler = (err, req, res, next) => {
     console.log(err);
-    return (0, response_1.default)(res, 500, "Something went wrong, please try again later!");
+    return (0, response_1.default)(res, 500, `Something went wrong, please try again later!n ${err}`);
 };
 exports.default = errorHandler;
