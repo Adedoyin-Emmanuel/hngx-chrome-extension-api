@@ -23,7 +23,7 @@ The message can be an error message or a success message, then the data would be
 
 ### Endpoint actions
 
-`Upload`, `GetAll` `GetById`, `Delete`
+`Stream`, `EndStream`, `GetAll`, `GetById`, `Delete`
 
 ### Stream Endpoint
 
@@ -56,7 +56,7 @@ If the request succeeds, the API would return the following.
 
 ### End Stream Endpoint
 
-The stream endpoint takes another parameter which is `/upload` just for clarity.
+The stream endpoint takes another parameter which is `/stream` just for clarity.
 
 **Upload Endpoint URL**`https://localhost:2800/api/video/stream/end/:id?videoTitle=Webiste Hero Section Bug Fix`
 

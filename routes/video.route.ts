@@ -13,6 +13,8 @@ videoRouter.post(
   upload.fields([{ name: "blob" }, { name: "videoId" }]),
   VideoController.startStream
 );
+
+
 //end stream
 videoRouter.get("/stream/end/:id", VideoController.EndStream);
 videoRouter.get("/", VideoController.getAllVideos);

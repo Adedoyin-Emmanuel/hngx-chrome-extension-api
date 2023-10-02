@@ -21,7 +21,7 @@ class VideoController {
 
     //check if the video exists
     const checkVideo = await VideoModel.findOne({ videoId: videoBlobId });
-
+    
     //create the video for reference
 
     if (!checkVideo) {
@@ -29,6 +29,7 @@ class VideoController {
         videoId: videoBlobId,
       });
     }
+
 
     const fileName = `${videoBlobId}.webm`;
     const uploadDir = path.join(__dirname, "..", "/uploads");
@@ -59,7 +60,7 @@ class VideoController {
     if (error) return response(res, 400, error.details[0].message);
 
     const dbVideo = await VideoModel.findOne({ videoId: value.id });
-    if (!dbVideo) return response(res, 404, "video not found");
+    if (!dbVideo) return response(res, 404, "Video not found");
 
     const fileName = `${value.id}.webm`;
     const uploadDir = path.join(__dirname, "..", "/uploads");
@@ -80,6 +81,7 @@ class VideoController {
       file: readFile,
       model: "whisper-1",
     };
+
 
     try {
       const aiTranscript = await OpenAi.audio.transcriptions.create(
@@ -102,6 +104,7 @@ class VideoController {
         dataToStore,
         { new: true }
       );
+
       if (!dbResponse) return response(res, 404, "Video not found");
       console.log(dbResponse);
       return response(res, 200, "Video stream successful", dbResponse);
@@ -110,11 +113,13 @@ class VideoController {
       return response(res, 500, `Video stream failed ${error}`);
     }
   }
+
   static async getAllVideos(req: Request, res: Response) {
     const dataFromDb = await VideoModel.find();
 
     return response(res, 200, "Videos fetched successfully", dataFromDb);
   }
+  
 
   static async getVideoById(req: Request, res: Response) {
     const requestSchema = Joi.object({

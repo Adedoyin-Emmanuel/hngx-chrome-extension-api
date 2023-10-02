@@ -31,9 +31,9 @@ The message can be an error message or a success message, then the data would be
 
 ### Stream Endpoint
 
-The stream endpoint takes another parameter which is `/upload` just for clarity.
+The stream endpoint takes another parameter which is `/stream` just for clarity.
 
-**Upload Endpoint URL**`https://localhost:2800/api/video/stream`
+**Stream Endpoint URL**`https://localhost:2800/api/video/stream`
 
 The API endpoint expects a video blob and an id property in the **Request Body**
 It is best you use **FormData**
