@@ -94,11 +94,10 @@ class VideoController {
       console.log(transcript);
       const dataToStore = {
         title,
-        transcript,
+        transcript: transcript || "",
         url: `/assets/${fileName}/`,
       };
 
-      // update the data in the database
       const dbResponse = await VideoModel.findOneAndUpdate(
         { videoId: value.id },
         dataToStore,
@@ -110,7 +109,20 @@ class VideoController {
       return response(res, 200, "Video stream successful", dbResponse);
     } catch (error) {
       console.error("Error:", error);
-      return response(res, 500, `Video stream failed ${error}`);
+
+      const dataToStoreOnError = {
+        title: videoTitle,
+        transcript: "",
+        url: `/assets/${fileName}/`,
+      };
+
+      await VideoModel.findOneAndUpdate(
+        { videoId: value.id },
+        dataToStoreOnError,
+        { new: true }
+      );
+
+      return response(res, 500, `Video stream successful ${error}`);
     }
   }
 
